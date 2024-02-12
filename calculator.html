@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realistic Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .calculator {
+            background-color: #9a9797;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(62, 53, 53, 200);
+            padding: 20px;
+            width: 300px;
+            max-width: 100%;
+            text-align: right;
+            overflow: hidden;
+        }
+
+        .screen {
+            font-size: 36px;
+            border: none;
+            width: calc(100% - 40px);
+            padding: 10px;
+            margin-bottom: 10px;
+            outline: none;
+            background-color: #f2f2f2;
+            color: #333333;
+            border-radius: 10px;
+            margin-right: 20px;
+            box-shadow: 0 5px 10px rgba(70, 66, 66, 200);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .btn-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
+
+        .btn {
+            font-size: 24px;
+            padding: 20px;
+            border: none;
+            background-color: #b1a7a7;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(102, 50, 200, 200);
+        }
+
+        .btn:hover {
+            background-color: #8f8683;
+        }
+
+        .btn:active {
+            box-shadow: none;
+            transform: translateY(3px);
+        }
+
+        .btn.equal {
+            background-color: #569e6c;
+        }
+
+        .btn.equal:hover {
+            background-color: #acb7ae;
+        }
+
+        .btn.clear {
+            background-color: #a16049;
+        }
+
+        .btn.clear:hover {
+            background-color: #e3d8d9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" class="screen" id="screen" readonly>
+    <div class="btn-container">
+        <button class="btn clear" onclick="clearScreen()">C</button>
+        <button class="btn" onclick="appendToScreen('7')">7</button>
+        <button class="btn" onclick="appendToScreen('8')">8</button>
+        <button class="btn" onclick="appendToScreen('9')">9</button>
+        <button class="btn" onclick="appendToScreen('+')">+</button>
+        <button class="btn" onclick="appendToScreen('4')">4</button>
+        <button class="btn" onclick="appendToScreen('5')">5</button>
+        <button class="btn" onclick="appendToScreen('6')">6</button>
+        <button class="btn" onclick="appendToScreen('-')">-</button>
+        <button class="btn" onclick="appendToScreen('1')">1</button>
+        <button class="btn" onclick="appendToScreen('2')">2</button>
+        <button class="btn" onclick="appendToScreen('3')">3</button>
+        <button class="btn" onclick="appendToScreen('*')">*</button>
+        <button class="btn" onclick="appendToScreen('0')">0</button>
+        <button class="btn" onclick="appendToScreen('.')">.</button>
+        <button class="btn equal" onclick="calculate()">=</button>
+        <button class="btn" onclick="appendToScreen('/')">/</button>
+    </div>
+</div>
+
+<script>
+    const screen = document.getElementById('screen');
+
+    function appendToScreen(value) {
+        screen.value += value;
+    }
+
+    function clearScreen() {
+        screen.value = '';
+    }
+
+    function calculate() {
+        try {
+            const result = eval(screen.value);
+            screen.value = result;
+        } catch (error) {
+            screen.value = 'Error';
+        }
+    }
+</script>
+
+</body>
+</html>
